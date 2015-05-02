@@ -1,2 +1,2 @@
 # gwt-worker
-WebWorker support in GWT 2.7.0
+**Unofficial** WebWorker support in GWT 2.7.0
