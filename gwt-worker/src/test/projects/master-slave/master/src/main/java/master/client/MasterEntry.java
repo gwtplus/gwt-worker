@@ -3,6 +3,7 @@ package master.client;
 import java.util.logging.Logger;
 
 import org.gwtproject.gwt.worker.shared.AbstractWorkerScope;
+import org.gwtproject.gwt.worker.shared.MessagePort;
 import org.gwtproject.gwt.worker.shared.Worker;
 import org.gwtproject.gwt.worker.shared.WorkerError;
 import org.gwtproject.gwt.worker.shared.Workers;
@@ -32,7 +33,8 @@ public class MasterEntry implements EntryPoint {
 
 		 //chrome://inspect/#workers
 		 SharedWorker sw = Workers.newSharedWorker("./Slave/Slave.worker.js", "looper");
-		 sw.getPort();
+		 MessagePort port = sw.getPort();
+		 port.start();
 	}
 
 	private void logWorkerState() {

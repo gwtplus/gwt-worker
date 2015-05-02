@@ -35,7 +35,7 @@ public class AbstractWorkerScopeJsoImpl extends EventTarget implements
 
 	@Override
 	public final WorkerScope asDedicated() {
-		return (WorkerScope) this;
+		return (WorkerScopeJsoImpl) this.cast();
 	}
 
 	@Override

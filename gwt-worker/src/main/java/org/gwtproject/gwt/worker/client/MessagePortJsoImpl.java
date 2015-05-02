@@ -33,6 +33,11 @@ public class MessagePortJsoImpl extends JavaScriptObject implements MessagePort 
 	private final native void postMessage(String message, JsArray<ArrayBufferNative> buffer)/*-{
 		this.postMessage(message, buffer);
 	}-*/;
+	
+	@Override
+	public final void postMessage(String message, MessagePort... ports) {
+		throw new UnsupportedOperationException();
+	}
 
 	@Override
 	public final native void start()/*-{

@@ -3,6 +3,10 @@
 <module rename-to="Master">
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name="org.gwtproject.gwt.worker.WorkerMaster" />
+	
+	<!-- optional -->
+	<inherits name="com.google.gwt.logging.Logging" />
+	<set-property name="gwt.logging.enabled" value="TRUE"/>
 
 	<entry-point class="master.client.MasterEntry" />
 </module>

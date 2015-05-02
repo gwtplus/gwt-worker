@@ -3,6 +3,8 @@ package slave.client;
 import java.util.logging.Logger;
 
 import org.gwtproject.gwt.worker.shared.AbstractWorkerScope;
+import org.gwtproject.gwt.worker.shared.MessageEvent;
+import org.gwtproject.gwt.worker.shared.WorkerScope;
 import org.gwtproject.gwt.worker.shared.Workers;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -19,6 +21,26 @@ public class SlaveEntry implements EntryPoint {
 		
 		final boolean isWorker = Workers.inWorker();
 		final String name = isWorker ? "Worker:  " : "Renderer:";
+		
+		if(isWorker) {
+			AbstractWorkerScope scope = Workers.getScope();
+			
+			MessageEvent.Handler h = new MessageEvent.Handler() {
+				
+				@Override
+				public void onMessage(MessageEvent event) {
+					sLogger.warning("Message from master: '" + event.getData() + "'");
+				}
+			};
+			
+			if(scope.isDedicated()) {
+				WorkerScope ws = scope.asDedicated();
+				ws.asPort().addMessageHandler(h);
+			} else if (scope.isShared()) {
+				//SharedWorkerScope sws = scope.asShared();
+				//TODO: implement on connect
+			}
+		}
 		
 		//check worker locations:
 		sLogger.info(name + "host page: " + GWT.getHostPageBaseURL());

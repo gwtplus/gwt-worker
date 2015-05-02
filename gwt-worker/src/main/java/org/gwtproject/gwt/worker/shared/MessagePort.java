@@ -9,16 +9,14 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
 @SingleJsoImpl(MessagePortJsoImpl.class)
 public interface MessagePort {
 	
+	//TODO: support different message types (structured clone algorithm is used for message)
 	void postMessage(String message);
 	
-	/**
-	 * Just an example that post message allows sending Transferable objects:
-	 * ArrayBuffer or CanvasProxy or MessagePort
-	 * 
-	 * @param message
-	 * @param buffer
-	 */
-	void postMessage(String message, ArrayBuffer... buffer);
+	void postMessage(String message, ArrayBuffer... buffers);
+	
+	void postMessage(String message, MessagePort... ports);
+	
+	//void postMessage(String message, CanvasProxy... proxies);
 	
 	void start();
 	
