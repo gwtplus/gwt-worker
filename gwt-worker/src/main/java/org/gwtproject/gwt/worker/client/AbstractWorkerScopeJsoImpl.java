@@ -3,6 +3,9 @@ package org.gwtproject.gwt.worker.client;
 import org.gwtproject.gwt.worker.shared.AbstractWorkerScope;
 import org.gwtproject.gwt.worker.shared.WorkerLocation;
 import org.gwtproject.gwt.worker.shared.WorkerNavigator;
+import org.gwtproject.gwt.worker.shared.WorkerScope;
+import org.gwtproject.gwt.worker.shared.service.ServiceWorkerScope;
+import org.gwtproject.gwt.worker.shared.shared.SharedWorkerScope;
 
 import com.google.gwt.dom.client.EventTarget;
 import com.google.gwt.event.dom.client.ErrorHandler;
@@ -13,6 +16,39 @@ public class AbstractWorkerScopeJsoImpl extends EventTarget implements
 
 	protected AbstractWorkerScopeJsoImpl() {
 
+	}
+	
+	@Override
+	public final boolean isShared() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public final boolean isService() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public final boolean isDedicated() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public final WorkerScope asDedicated() {
+		return (WorkerScope) this;
+	}
+
+	@Override
+	public final SharedWorkerScope asShared() {
+		return (SharedWorkerScope) this;
+	}
+
+	@Override
+	public final ServiceWorkerScope asService() {
+		return (ServiceWorkerScope) this;
 	}
 
 	@Override
@@ -59,5 +95,4 @@ public class AbstractWorkerScopeJsoImpl extends EventTarget implements
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

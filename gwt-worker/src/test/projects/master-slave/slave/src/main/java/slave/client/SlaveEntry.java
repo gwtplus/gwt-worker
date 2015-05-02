@@ -8,13 +8,13 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Timer;
 
-public class WorkerSlaveEntry implements EntryPoint {
+public class SlaveEntry implements EntryPoint {
 
-	private static final Logger sLogger = Logger.getLogger("WorkerSlaveEntry");
+	private static final Logger sLogger = Logger.getLogger("SlaveEntry");
 	
 	@Override
 	public void onModuleLoad() {
-		final boolean isWorker = Workers.isWorker();
+		final boolean isWorker = Workers.inWorkerContext();
 		final String name = isWorker ? "Worker:  " : "Renderer:";
 		
 		//check worker locations:

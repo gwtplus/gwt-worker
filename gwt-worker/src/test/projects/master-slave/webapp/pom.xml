@@ -82,8 +82,8 @@
 					<extra>${webappDirectory}/WEB-INF/deploy</extra>
 					<extraParam>true</extraParam>
 					<modules>
-						<module>master.WorkerMaster</module>
-						<module>slave.WorkerSlave</module>
+						<module>master.Master</module>
+						<module>slave.Slave</module>
 					</modules>
 					<draftCompile>true</draftCompile>
 					<style>PRETTY</style>
