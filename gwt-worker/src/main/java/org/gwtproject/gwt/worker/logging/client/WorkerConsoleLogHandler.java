@@ -64,22 +64,22 @@ public class WorkerConsoleLogHandler extends Handler {
   }
 
   private native boolean isSupported() /*-{
-    return !!self.console;
+    return !!$self.console;
   }-*/;
 
   private native void error(String message) /*-{
-    self.console.error(message);
+    $self.console.error(message);
   }-*/;
 
   private native void warn(String message) /*-{
-    self.console.warn(message);
+    $self.console.warn(message);
   }-*/;
 
   private native void info(String message) /*-{
-    self.console.info(message);
+    $self.console.info(message);
   }-*/;
 
   private native void log(String message) /*-{
-    self.console.log(message);
+    $self.console.log(message);
   }-*/;
 }

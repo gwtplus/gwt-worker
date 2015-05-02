@@ -71,34 +71,42 @@ public class SingleScriptWorkerLinker extends SingleScriptLinker {
 	}
 
 	protected void defineJsWndAndDoc(DefaultTextOutput out) {
-		//http://stackoverflow.com/questions/7931182/reliably-detect-if-the-script-is-executing-in-a-web-worker
-		out.print("var $isWorker = typeof importScripts === 'function';");
-		out.newlineOpt();
-		
-		//support running of worker code in renderer context
-		out.print("var $wnd = $isWorker ? self : window;");
+		// http://stackoverflow.com/questions/7931182/reliably-detect-if-the-script-is-executing-in-a-web-worker
+		out.print("var isWorker = typeof importScripts === 'function';");
 		out.newlineOpt();
 
-		//docMode:10 triggers ie10 permutation and doesn't trigger gecko (so gecko1_8 is used)
-		//same solution should be in template so there are no runtime warnings about permutation
-		//incompatibility
-		out.print("var $doc = $isWorker ? {"
-				+ "documentMode: 10, "
-				+ "compatMode: 'CSS1Compat',"
-				+ "location: $wnd.location"
-				+ "} : $wnd.document;");
+		out.print("var $self = isWorker ? self : window;");
+		out.newlineOpt();
+
+		out.print("if(isWorker) {");
+		{
+			//simple document emulation in worker context
+			out.print("$self.document = { ");
+			out.print("documentMode: 10, ");
+			out.print("compatMode: 'CSS1Compat',");
+			out.print("location: $self.location");
+			out.print("createElement: function(){throw 'worker!'}");
+			out.print("}");
+		}
+		out.print("}");
+
+		// support running of worker code in renderer context
+		out.print("var $wnd = $self;");
+		out.newlineOpt();
+
+		out.print("var $doc = $wnd.document;");
 		out.newlineOpt();
 	}
-	
+
 	@Override
 	protected String getSelectionScriptTemplate(TreeLogger logger,
 			LinkerContext context) throws UnableToCompleteException {
 		return getClass().getPackage().getName().replace('.', '/')
 				+ "/SingleScriptWorkerTemplate.js";
 	}
-	
-	//possible to setup proper caching strategy for worker scripts
-	//nocache.js or cache.js are not useful in this case
+
+	// possible to setup proper caching strategy for worker scripts
+	// nocache.js or cache.js are not useful in this case
 	@Override
 	protected String getCompilationExtension(TreeLogger logger,
 			LinkerContext context) throws UnableToCompleteException {

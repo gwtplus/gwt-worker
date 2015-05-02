@@ -11,7 +11,7 @@ public class WorkersJsoImpl extends WorkersBaseImpl {
 
 	@Override
 	public native boolean inWorkerContext()/*-{
-		return $isWorker;
+		return typeof $self.importScripts === 'function';
 	}-*/;
 
 	@Override

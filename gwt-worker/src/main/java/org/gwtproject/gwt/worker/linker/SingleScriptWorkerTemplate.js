@@ -20,16 +20,23 @@ function __MODULE_FUNC__() {
   // Cache symbols locally for good obfuscation
 	
   //#worker
-  var $isWorker = typeof importScripts === 'function';
+  //http://stackoverflow.com/questions/7931182/reliably-detect-if-the-script-is-executing-in-a-web-worker
+  var isWorker = typeof importScripts === 'function';
+  var $self = isWorker ? self : window;
+  
+  if(isWorker) {
+    //minimal document emulation required by selection script
+    //docMode:10 triggers ie10 permutation and doesn't trigger gecko (so gecko1_8 is used)
+    //fixes runtime warnings about permutation incompatibility
+    $self.document = { 
+      documentMode: 10, 
+      compatMode: 'CSS1Compat'
+    }
+  }
   
   //#worker
-  var $wnd = $isWorker ? self : window
-		  
-  ,$doc = $isWorker ? { 
-	  documentMode: 10, 
-      compatMode: 'CSS1Compat', 
-      location: $wnd.location 
-   } : $wnd.document
+  var $wnd = $self
+  ,$doc = $self.document
   
   // These variables gate calling gwtOnLoad; all must be true to start
   ,gwtOnLoad, bodyDone
@@ -293,7 +300,7 @@ function __MODULE_FUNC__() {
   }
 
   //#worker
-  if($isWorker) {
+  if(isWorker) {
     computeWorkerScriptBase();
   } else {
     // do it early for compile/browse rebasing
@@ -319,7 +326,7 @@ function __MODULE_FUNC__() {
     }
 
   //#worker
-  if($isWorker) {
+  if(isWorker) {
 	  bodyDone = true;
 	  maybeStartModule();
 	  return;
