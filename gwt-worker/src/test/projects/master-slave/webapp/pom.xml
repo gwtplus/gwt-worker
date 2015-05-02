@@ -82,8 +82,8 @@
 					<extra>${webappDirectory}/WEB-INF/deploy</extra>
 					<extraParam>true</extraParam>
 					<modules>
-						<module>com.github.gwt.worker.master.WorkerMaster</module>
-						<module>com.github.gwt.worker.slave.WorkerSlave</module>
+						<module>master.WorkerMaster</module>
+						<module>slave.WorkerSlave</module>
 					</modules>
 					<draftCompile>true</draftCompile>
 					<style>PRETTY</style>

@@ -1,4 +1,4 @@
-package com.github.gwt.worker.slave.client;
+package slave.client;
 
 import java.util.logging.Logger;
 

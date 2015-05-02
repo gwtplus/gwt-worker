@@ -12,5 +12,5 @@
 	<!-- optional, switch to INFO and lower -->
 	<set-property name="gwt.logging.enabled" value="TRUE"/>
 	
-	<entry-point class="com.github.gwt.worker.slave.client.WorkerSlaveEntry" />
+	<entry-point class="slave.client.WorkerSlaveEntry" />
 </module>

@@ -4,5 +4,5 @@
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name="com.github.gwt.worker.WorkerMaster" />
 
-	<entry-point class="com.github.gwt.worker.master.client.WorkerMasterEntry" />
+	<entry-point class="master.client.WorkerMasterEntry" />
 </module>
