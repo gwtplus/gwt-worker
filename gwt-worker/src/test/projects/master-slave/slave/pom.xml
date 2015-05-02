@@ -2,37 +2,37 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-
-	<artifactId>gwt-worker-slave</artifactId>
 	
 	<parent>
-		<groupId>com.github.gwt-worker</groupId>
-		<artifactId>gwt-worker</artifactId>
+		<groupId>io.github.metteo</groupId>
+		<artifactId>master-slave</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
+	
+	<artifactId>slave</artifactId>
 
-	<name>GWT Worker - Slave</name>
+	<name>MasterSlave - Slave</name>
 	<description>Sample project which uses web workers. This is a web worker - slave - module which is created by master</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>2.7.0</version>
+			<version>${gwt.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
-			<version>2.7.0</version>
+			<version>${gwt.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.github.gwt-worker</groupId>
-			<artifactId>gwt-worker-core</artifactId>
+			<groupId>io.github.metteo</groupId>
+			<artifactId>gwt-worker</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.github.gwt-worker</groupId>
-			<artifactId>gwt-worker-core</artifactId>
+			<groupId>io.github.metteo</groupId>
+			<artifactId>gwt-worker</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 			<classifier>sources</classifier>
 		</dependency>
@@ -43,7 +43,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-
 				<executions>
 					<execution>
 						<id>attach-sources</id>

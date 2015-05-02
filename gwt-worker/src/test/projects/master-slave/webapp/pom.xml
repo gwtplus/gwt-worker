@@ -4,15 +4,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.github.gwt-worker</groupId>
-		<artifactId>gwt-worker</artifactId>
+		<groupId>io.github.metteo</groupId>
+		<artifactId>master-slave</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>gwt-worker-webapp</artifactId>
+	<artifactId>webapp</artifactId>
 	<packaging>war</packaging>
 	
-	<name>GWT Worker - Webapp</name>
+	<name>MasterSlave - Webapp</name>
 
 	<properties>
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
@@ -21,27 +21,27 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.github.gwt-worker</groupId>
-			<artifactId>gwt-worker-master</artifactId>
+			<groupId>io.github.metteo</groupId>
+			<artifactId>master</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.github.gwt-worker</groupId>
-			<artifactId>gwt-worker-master</artifactId>
+			<groupId>io.github.metteo</groupId>
+			<artifactId>master</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.github.gwt-worker</groupId>
-			<artifactId>gwt-worker-slave</artifactId>
+			<groupId>io.github.metteo</groupId>
+			<artifactId>slave</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.github.gwt-worker</groupId>
-			<artifactId>gwt-worker-slave</artifactId>
+			<groupId>io.github.metteo</groupId>
+			<artifactId>slave</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 			<classifier>sources</classifier>
 			<scope>provided</scope>
@@ -86,10 +86,7 @@
 						<module>com.github.gwt.worker.slave.WorkerSlave</module>
 					</modules>
 					<draftCompile>true</draftCompile>
-					<!-- <compileReport>true</compileReport> -->
 					<style>PRETTY</style>
-					<!-- <logLevel>DEBUG</logLevel> -->
-					<!-- <localWorkers>1</localWorkers> -->
 					<strict>true</strict>
 				</configuration>
 			</plugin>
@@ -111,5 +108,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

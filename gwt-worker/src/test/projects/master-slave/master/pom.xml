@@ -4,35 +4,35 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.github.gwt-worker</groupId>
-		<artifactId>gwt-worker</artifactId>
+		<groupId>io.github.metteo</groupId>
+		<artifactId>master-slave</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>gwt-worker-master</artifactId>
+	<artifactId>master</artifactId>
 
-	<name>GWT Worker - Master</name>
+	<name>MasterSlave - Master</name>
 	<description>Sample project which uses web workers. This is a regular module - master - which creates slave worker</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
-			<version>2.7.0</version>
+			<version>${gwt.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
-			<version>2.7.0</version>
+			<version>${gwt.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.github.gwt-worker</groupId>
-			<artifactId>gwt-worker-core</artifactId>
+			<groupId>io.github.metteo</groupId>
+			<artifactId>gwt-worker</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.github.gwt-worker</groupId>
-			<artifactId>gwt-worker-core</artifactId>
+			<groupId>io.github.metteo</groupId>
+			<artifactId>gwt-worker</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 			<classifier>sources</classifier>
 		</dependency>
@@ -43,7 +43,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-
 				<executions>
 					<execution>
 						<id>attach-sources</id>
