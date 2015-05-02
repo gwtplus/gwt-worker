@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google, Inc.//DTD GWT Module Descriptor//EN" "https://github.com/gwtproject/gwt/raw/2.7.0/distro-source/core/src/gwt-module.dtd">
+<module rename-to="WorkerSlave">
+	<inherits name="com.github.gwt.worker.WorkerMaster" />
+  	
+  	<!-- Required by ssworker linker -->
+	<collapse-all-properties/>
+	
+	<!-- 
+	Alternatives: (also derived properties have to be collapsed)
+	https://code.google.com/p/google-web-toolkit/issues/detail?id=6258#c4
+	
+	<collapse-property name="user.agent" values="*" />
+	<collapse-property name="user.agent" values="safari,gecko1_8,ie8,ie9,ie10" />
+	
+	<collapse-property name="canvasElementSupport" values="maybe,no" />
+	<collapse-property name="touchEventSupport" values="maybe,no" />
+	<collapse-property name="dragEventSupport" values="maybe,no" />
+	<collapse-property name="audioElementSupport" values="maybe,no" />
+	<collapse-property name="videoElementSupport" values="maybe,no" />
+	
+	or
+	
+	<set-property name="user.agent" value="safari" />
+	-->	
+	
+	<!-- not yet implemented -->
+	<define-linker name="xsworker" class="com.github.gwt.worker.linker.CrossSiteWorkerLinker" />
+	
+	<define-linker name="ssworker" class="com.github.gwt.worker.linker.SingleScriptWorkerLinker" />
+  	<add-linker name="ssworker"/>
+
+	<source path="shared" />
+	<source path="client" />
+</module>

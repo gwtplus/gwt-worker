@@ -1,6 +1,7 @@
 .settings
 .classpath
 .project
+target
 
 *.class
 
