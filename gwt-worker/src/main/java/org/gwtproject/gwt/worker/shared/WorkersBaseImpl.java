@@ -5,7 +5,7 @@ import org.gwtproject.gwt.worker.shared.shared.SharedWorker;
 
 public abstract class WorkersBaseImpl {
 
-	public abstract boolean inWorkerContext();
+	public abstract boolean inWorker();
 	
 	public abstract Worker newWorker(String scriptUrl);
 	

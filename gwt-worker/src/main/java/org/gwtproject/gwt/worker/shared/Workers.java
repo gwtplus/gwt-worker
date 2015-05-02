@@ -11,8 +11,8 @@ public class Workers {
 	/**
 	 * Checks if code is running in worker context
 	 */
-	public static boolean inWorkerContext() {
-		return sImpl.inWorkerContext();
+	public static boolean inWorker() {
+		return sImpl.inWorker();
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class Workers {
 	 * @param url
 	 * @return
 	 */
-	public Promise<ServiceWorker> registerServiceWorker(String url) {
+	public static Promise<ServiceWorker> registerServiceWorker(String url) {
 		return sImpl.registerServiceWorker(url);
 	}
 	
@@ -48,7 +48,7 @@ public class Workers {
 	 * 
 	 * @return
 	 */
-	public AbstractWorkerScope getScope() {
+	public static AbstractWorkerScope getScope() {
 		return sImpl.getScope();
 	}
 }

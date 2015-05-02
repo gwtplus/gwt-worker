@@ -19,22 +19,19 @@ public class AbstractWorkerScopeJsoImpl extends EventTarget implements
 	}
 	
 	@Override
-	public final boolean isShared() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public final native boolean isShared() /*-{
+		return typeof SharedWorkerGlobalScope === 'function';
+	}-*/;
 
 	@Override
-	public final boolean isService() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public final native boolean isService() /*-{
+		return typeof ServiceWorkerGlobalScope === 'function';
+	}-*/;
 
 	@Override
-	public final boolean isDedicated() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public final native boolean isDedicated() /*-{
+		return typeof DedicatedWorkerGlobalScope === 'function';
+	}-*/;
 
 	@Override
 	public final WorkerScope asDedicated() {

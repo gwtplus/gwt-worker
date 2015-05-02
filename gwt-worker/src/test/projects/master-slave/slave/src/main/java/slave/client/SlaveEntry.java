@@ -2,6 +2,7 @@ package slave.client;
 
 import java.util.logging.Logger;
 
+import org.gwtproject.gwt.worker.shared.AbstractWorkerScope;
 import org.gwtproject.gwt.worker.shared.Workers;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -14,7 +15,9 @@ public class SlaveEntry implements EntryPoint {
 	
 	@Override
 	public void onModuleLoad() {
-		final boolean isWorker = Workers.inWorkerContext();
+		logWorkerState();
+		
+		final boolean isWorker = Workers.inWorker();
 		final String name = isWorker ? "Worker:  " : "Renderer:";
 		
 		//check worker locations:
@@ -38,6 +41,23 @@ public class SlaveEntry implements EntryPoint {
 		
 		//simulate worker throws some error
 		throwError(name);
+	}
+	
+	private void logWorkerState() {
+		boolean inWorker = Workers.inWorker();
+		sLogger.info("inWorker=" + inWorker);
+		
+		if(inWorker) {
+			AbstractWorkerScope scope = Workers.getScope();
+			
+			boolean dedicated = scope.isDedicated();
+			boolean shared = scope.isShared();
+			boolean service = scope.isService();
+			
+			sLogger.info("dedicated=" + dedicated);
+			sLogger.info("shared=" + shared);
+			sLogger.info("service=" + service);
+		}
 	}
 	
 	private static native void throwError(String name)/*-{

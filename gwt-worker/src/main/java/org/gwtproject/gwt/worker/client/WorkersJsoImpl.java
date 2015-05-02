@@ -10,8 +10,13 @@ import org.gwtproject.gwt.worker.shared.shared.SharedWorker;
 public class WorkersJsoImpl extends WorkersBaseImpl {
 
 	@Override
-	public native boolean inWorkerContext()/*-{
-		return typeof $self.importScripts === 'function';
+	public native boolean inWorker()/*-{
+		return typeof importScripts === 'function';
+	}-*/;
+	
+	@Override
+	public native AbstractWorkerScope getScope()/*-{
+		return $self;
 	}-*/;
 
 	@Override
@@ -28,10 +33,4 @@ public class WorkersJsoImpl extends WorkersBaseImpl {
 	public Promise<ServiceWorker> registerServiceWorker(String url) {
 		return null;
 	}
-	
-	@Override
-	public AbstractWorkerScope getScope() {
-		return null;
-	}
-
 }
