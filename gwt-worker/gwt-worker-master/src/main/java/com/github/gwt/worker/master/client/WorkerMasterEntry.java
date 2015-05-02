@@ -24,7 +24,7 @@ public class WorkerMasterEntry implements EntryPoint {
 		doc.getBody().appendChild(s);
 
 		// web inspector threads
-		Worker w = Workers.newWorker("./WorkerSlave/WorkerSlave.nocache.js");
+		Worker w = Workers.newWorker("./WorkerSlave/WorkerSlave.worker.js");
 		w.asPort().postMessage("You are a slave :)");
 		w.addErrorHandler(new WorkerError.Handler() {
 
@@ -36,7 +36,7 @@ public class WorkerMasterEntry implements EntryPoint {
 		});
 
 		 //chrome://inspect/#workers
-		 SharedWorker sw = Workers.newSharedWorker("./WorkerSlave/WorkerSlave.nocache.js",
+		 SharedWorker sw = Workers.newSharedWorker("./WorkerSlave/WorkerSlave.worker.js",
 		 "looper");
 		 sw.getPort();
 	}

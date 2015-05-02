@@ -96,4 +96,12 @@ public class SingleScriptWorkerLinker extends SingleScriptLinker {
 		return getClass().getPackage().getName().replace('.', '/')
 				+ "/SingleScriptWorkerTemplate.js";
 	}
+	
+	//possible to setup proper caching strategy for worker scripts
+	//nocache.js or cache.js are not useful in this case
+	@Override
+	protected String getCompilationExtension(TreeLogger logger,
+			LinkerContext context) throws UnableToCompleteException {
+		return ".worker.js";
+	}
 }

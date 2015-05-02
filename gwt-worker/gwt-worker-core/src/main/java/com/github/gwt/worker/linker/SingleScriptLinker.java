@@ -157,17 +157,14 @@ public class SingleScriptLinker extends SelectionScriptLinker {
     out.newlineOpt();
 
     return emitString(logger, out.toString(), context.getModuleName()
-        + ".nocache.js");
+        + getCompilationExtension(logger, context));
   }
-
-  /**
-   * Unimplemented. Normally required by
-   * {@link #doEmitCompilation(TreeLogger, LinkerContext, CompilationResult, ArtifactSet)}.
-   */
+  
+  //#worker used so it's possible to override
   @Override
   protected String getCompilationExtension(TreeLogger logger,
       LinkerContext context) throws UnableToCompleteException {
-    throw new UnableToCompleteException();
+    return ".nocache.js";
   }
 
   /**

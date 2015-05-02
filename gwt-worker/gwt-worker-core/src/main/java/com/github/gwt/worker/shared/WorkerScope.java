@@ -7,5 +7,5 @@ package com.github.gwt.worker.shared;
  */
 public interface WorkerScope extends AbstractWorkerScope {
 	
-	MessagePort asMessagePort(); 
+	MessagePort asPort(); 
 }
