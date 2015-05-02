@@ -2,10 +2,11 @@ package master.client;
 
 import java.util.logging.Logger;
 
-import com.github.gwt.worker.shared.Worker;
-import com.github.gwt.worker.shared.WorkerError;
-import com.github.gwt.worker.shared.Workers;
-import com.github.gwt.worker.shared.shared.SharedWorker;
+import org.gwtproject.gwt.worker.shared.Worker;
+import org.gwtproject.gwt.worker.shared.WorkerError;
+import org.gwtproject.gwt.worker.shared.Workers;
+import org.gwtproject.gwt.worker.shared.shared.SharedWorker;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.SpanElement;

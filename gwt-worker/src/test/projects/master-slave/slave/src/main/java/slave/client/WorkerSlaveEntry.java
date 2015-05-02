@@ -2,7 +2,8 @@ package slave.client;
 
 import java.util.logging.Logger;
 
-import com.github.gwt.worker.shared.Workers;
+import org.gwtproject.gwt.worker.shared.Workers;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Timer;

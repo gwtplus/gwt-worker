@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google, Inc.//DTD GWT Module Descriptor//EN" "https://github.com/gwtproject/gwt/raw/2.7.0/distro-source/core/src/gwt-module.dtd">
+<module rename-to="WorkerLoggingDisabled">
+	<inherits name="com.google.gwt.logging.Logging" />
+
+	<define-property name="gwt.logging.workerConsoleHandler" values="ENABLED, DISABLED" />
+	<replace-with class="com.google.gwt.logging.client.NullLogHandler">
+		<when-type-is class="org.gwtproject.gwt.worker.logging.client.WorkerConsoleLogHandler" />
+		<any>
+			<when-property-is name="gwt.logging.enabled" value="FALSE" />
+			<when-property-is name="gwt.logging.workerConsoleHandler" value="DISABLED" />
+		</any>
+	</replace-with>
+	
+	<!-- Disable consoleHandler since it has hardcoded window.console -->
+	<set-property name="gwt.logging.consoleHandler" value="DISABLED" />
+	<set-property name="gwt.logging.workerConsoleHandler" value="ENABLED" />
+
+	<entry-point class="org.gwtproject.gwt.worker.logging.client.WorkerLoggingEntry"/>
+</module>

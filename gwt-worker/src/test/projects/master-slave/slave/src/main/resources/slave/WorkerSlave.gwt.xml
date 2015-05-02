@@ -5,10 +5,10 @@
 	<inherits name="com.google.gwt.user.User" />
 
 	<!-- required in slave -->
-	<inherits name="com.github.gwt.worker.WorkerSlave" />
+	<inherits name="org.gwtproject.gwt.worker.WorkerSlave" />
 	
 	<!-- optional, by default uses SEVERE -->
-	<inherits name="com.github.gwt.worker.logging.WorkerLogging" />
+	<inherits name="org.gwtproject.gwt.worker.logging.WorkerLogging" />
 	<!-- optional, switch to INFO and lower -->
 	<set-property name="gwt.logging.enabled" value="TRUE"/>
 	

@@ -2,7 +2,7 @@
 <!DOCTYPE module PUBLIC "-//Google, Inc.//DTD GWT Module Descriptor//EN" "https://github.com/gwtproject/gwt/raw/2.7.0/distro-source/core/src/gwt-module.dtd">
 <module rename-to="WorkerMaster">
 	<inherits name="com.google.gwt.user.User" />
-	<inherits name="com.github.gwt.worker.WorkerMaster" />
+	<inherits name="org.gwtproject.gwt.worker.WorkerMaster" />
 
 	<entry-point class="master.client.WorkerMasterEntry" />
 </module>
