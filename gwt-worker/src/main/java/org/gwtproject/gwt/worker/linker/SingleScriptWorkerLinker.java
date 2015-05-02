@@ -81,14 +81,15 @@ public class SingleScriptWorkerLinker extends SingleScriptLinker {
 		out.print("if(isWorker) {");
 		{
 			//simple document emulation in worker context
-			out.print("$self.document = { ");
-			out.print("documentMode: 10, ");
+			out.print("$self.document = {");
+			out.print("documentMode: 10,");
 			out.print("compatMode: 'CSS1Compat',");
-			out.print("location: $self.location");
+			out.print("location: $self.location,");
 			out.print("createElement: function(){throw 'worker!'}");
-			out.print("}");
+			out.print("};");
 		}
 		out.print("}");
+		out.newlineOpt();
 
 		// support running of worker code in renderer context
 		out.print("var $wnd = $self;");

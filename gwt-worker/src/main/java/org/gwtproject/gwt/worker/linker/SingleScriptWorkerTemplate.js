@@ -31,7 +31,7 @@ function __MODULE_FUNC__() {
     $self.document = { 
       documentMode: 10, 
       compatMode: 'CSS1Compat'
-    }
+    };
   }
   
   //#worker
