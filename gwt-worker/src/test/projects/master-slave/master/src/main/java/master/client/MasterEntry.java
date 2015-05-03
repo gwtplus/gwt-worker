@@ -17,8 +17,52 @@ public class MasterEntry implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
-		logWorkerState();
+		logWorkerInfo();
 
+		if (Workers.isDedicatedSupported()) {
+			startWorker();
+		}
+
+		if(Workers.isSharedSupported()) {
+			startSharedWorker();
+		}
+	}
+	
+	private void logWorkerInfo() {
+		boolean dedicatedSupport = Workers.isDedicatedSupported();
+		sLogger.info("dedicatedSupport=" + dedicatedSupport);
+		
+		boolean sharedSupport = Workers.isSharedSupported();
+		sLogger.info("sharedSupport=" + sharedSupport);
+		
+		boolean serviceSupport = Workers.isServiceSupported();
+		sLogger.info("serviceSupport=" + serviceSupport);
+		
+		boolean inWorker = Workers.inWorker();
+		sLogger.info("inWorker=" + inWorker);
+
+		if (inWorker) {
+			AbstractWorkerScope scope = Workers.getScope();
+
+			boolean dedicated = scope.isDedicated();
+			boolean shared = scope.isShared();
+			boolean service = scope.isService();
+
+			sLogger.info("dedicated=" + dedicated);
+			sLogger.info("shared=" + shared);
+			sLogger.info("service=" + service);
+		}
+	}
+
+	private void startSharedWorker() {
+		// chrome://inspect/#workers
+		SharedWorker sw = Workers.newSharedWorker("./Slave/Slave.worker.js",
+				"looper");
+		MessagePort port = sw.getPort();
+		port.start();
+	}
+
+	private void startWorker() {
 		// web inspector threads
 		Worker w = Workers.newWorker("./Slave/Slave.worker.js");
 		w.asPort().postMessage("You are a slave :)");
@@ -30,27 +74,5 @@ public class MasterEntry implements EntryPoint {
 						+ ":" + error.getLineNumber() + ")");
 			}
 		});
-
-		 //chrome://inspect/#workers
-		 SharedWorker sw = Workers.newSharedWorker("./Slave/Slave.worker.js", "looper");
-		 MessagePort port = sw.getPort();
-		 port.start();
-	}
-
-	private void logWorkerState() {
-		boolean inWorker = Workers.inWorker();
-		sLogger.info("inWorker=" + inWorker);
-		
-		if(inWorker) {
-			AbstractWorkerScope scope = Workers.getScope();
-			
-			boolean dedicated = scope.isDedicated();
-			boolean shared = scope.isShared();
-			boolean service = scope.isService();
-			
-			sLogger.info("dedicated=" + dedicated);
-			sLogger.info("shared=" + shared);
-			sLogger.info("service=" + service);
-		}
 	}
 }

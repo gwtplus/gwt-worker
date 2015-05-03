@@ -17,12 +17,12 @@ public class SlaveEntry implements EntryPoint {
 	
 	@Override
 	public void onModuleLoad() {
-		logWorkerState();
+		logWorkerInfo();
 		
-		final boolean isWorker = Workers.inWorker();
-		final String name = isWorker ? "Worker:  " : "Renderer:";
+		final boolean inWorker = Workers.inWorker();
+		final String name = inWorker ? "Worker:  " : "Renderer:";
 		
-		if(isWorker) {
+		if(inWorker) {
 			AbstractWorkerScope scope = Workers.getScope();
 			
 			MessageEvent.Handler h = new MessageEvent.Handler() {
@@ -65,17 +65,26 @@ public class SlaveEntry implements EntryPoint {
 		throwError(name);
 	}
 	
-	private void logWorkerState() {
+	private void logWorkerInfo() {
+		boolean dedicatedSupport = Workers.isDedicatedSupported();
+		sLogger.info("dedicatedSupport=" + dedicatedSupport);
+		
+		boolean sharedSupport = Workers.isSharedSupported();
+		sLogger.info("sharedSupport=" + sharedSupport);
+		
+		boolean serviceSupport = Workers.isServiceSupported();
+		sLogger.info("serviceSupport=" + serviceSupport);
+		
 		boolean inWorker = Workers.inWorker();
 		sLogger.info("inWorker=" + inWorker);
-		
-		if(inWorker) {
+
+		if (inWorker) {
 			AbstractWorkerScope scope = Workers.getScope();
-			
+
 			boolean dedicated = scope.isDedicated();
 			boolean shared = scope.isShared();
 			boolean service = scope.isService();
-			
+
 			sLogger.info("dedicated=" + dedicated);
 			sLogger.info("shared=" + shared);
 			sLogger.info("service=" + service);

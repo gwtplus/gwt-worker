@@ -8,6 +8,18 @@ public class Workers {
 	
 	protected static WorkersBaseImpl sImpl = new WorkersJsoImpl();
 	
+	public static boolean isDedicatedSupported() {
+		return sImpl.isDedicatedSupported();
+	}
+	
+	public static boolean isSharedSupported() {
+		return sImpl.isSharedSupported();
+	}
+	
+	public static boolean isServiceSupported() {
+		return sImpl.isServiceSupported();
+	}
+	
 	/**
 	 * Checks if code is running in worker context
 	 */
@@ -21,6 +33,10 @@ public class Workers {
 	 * @return
 	 */
 	public static Worker newWorker(String scriptUrl) {
+		if(!sImpl.isDedicatedSupported()) {
+			throw new UnsupportedOperationException("Worker not supported");
+		}
+		
 		return sImpl.newWorker(scriptUrl);
 	}
 	
@@ -31,6 +47,10 @@ public class Workers {
 	 * @return
 	 */
 	public static SharedWorker newSharedWorker(String scriptUrl, String name) {
+		if(!sImpl.isSharedSupported()) {
+			throw new UnsupportedOperationException("Shared Worker not supported");
+		}
+		
 		return sImpl.newSharedWorker(scriptUrl, name);
 	}
 	
@@ -40,6 +60,10 @@ public class Workers {
 	 * @return
 	 */
 	public static Promise<ServiceWorker> registerServiceWorker(String url) {
+		if(!sImpl.isServiceSupported()) {
+			throw new UnsupportedOperationException("Service Worker not supported");
+		}
+		
 		return sImpl.registerServiceWorker(url);
 	}
 	
@@ -49,6 +73,10 @@ public class Workers {
 	 * @return
 	 */
 	public static AbstractWorkerScope getScope() {
+		if(!sImpl.inWorker()) {
+			throw new UnsupportedOperationException("Not in worker scope");
+		}
+		
 		return sImpl.getScope();
 	}
 }

@@ -3,6 +3,91 @@
 <module rename-to="WorkerMaster">
 	<inherits name="com.google.gwt.core.Core" />
 
+	<!-- _______________Dedicated Workers_______________ -->
+
+	<!-- Define the support property -->
+	<define-property name="workerSupport" values="maybe,no" />
+
+	<!-- Give default support value of maybe -->
+	<set-property name="workerSupport" value="maybe" />
+
+	<!-- Give default support value of no to unsupported browsers -->
+	<set-property name="workerSupport" value="no">
+		<any>
+			<when-property-is name="user.agent" value="ie8" />
+			<when-property-is name="user.agent" value="ie9" />
+		</any>
+	</set-property>
+
+	<!-- Setup replacement rules depending on the property -->
+	<replace-with class="org.gwtproject.gwt.worker.client.WorkerSupport.WorkerDetectedMaybe">
+		<when-type-is class="org.gwtproject.gwt.worker.client.WorkerSupport.WorkerDetector" />
+		<when-property-is name="workerSupport" value="maybe" />
+	</replace-with>
+
+	<replace-with class="org.gwtproject.gwt.worker.client.WorkerSupport.WorkerDetectedNo">
+		<when-type-is class="org.gwtproject.gwt.worker.client.WorkerSupport.WorkerDetector" />
+		<when-property-is name="workerSupport" value="no" />
+	</replace-with>
+	
+	<!-- _______________Shared Workers_______________ -->
+	
+	<!-- Define the support property -->
+	<define-property name="sharedWorkerSupport" values="maybe,no" />
+	
+	<!-- Give default support value of maybe -->
+	<set-property name="sharedWorkerSupport" value="maybe" />
+	
+	<!-- Give default support value of no to unsupported browsers -->
+	<set-property name="sharedWorkerSupport" value="no">
+		<any>
+			<when-property-is name="user.agent" value="ie8" />
+			<when-property-is name="user.agent" value="ie9" />
+			<when-property-is name="user.agent" value="ie10" />
+		</any>
+	</set-property>
+	
+	<!-- Setup replacement rules depending on the property -->
+	<replace-with class="org.gwtproject.gwt.worker.client.WorkerSupport.SharedWorkerDetectedMaybe">
+		<when-type-is class="org.gwtproject.gwt.worker.client.WorkerSupport.SharedWorkerDetector" />
+		<when-property-is name="sharedWorkerSupport" value="maybe" />
+	</replace-with>
+
+	<replace-with class="org.gwtproject.gwt.worker.client.WorkerSupport.SharedWorkerDetectedNo">
+		<when-type-is class="org.gwtproject.gwt.worker.client.WorkerSupport.SharedWorkerDetector" />
+		<when-property-is name="sharedWorkerSupport" value="no" />
+	</replace-with>
+	
+	<!-- _______________Service Workers_______________ -->
+	
+	<!-- Define the support property -->
+	<define-property name="serviceWorkerSupport" values="maybe,no" />
+	
+	<!-- Give default support value of maybe -->
+	<set-property name="serviceWorkerSupport" value="maybe" />
+	
+	<!-- Give default support value of no to unsupported browsers -->
+	<set-property name="serviceWorkerSupport" value="no">
+		<any>
+			<when-property-is name="user.agent" value="ie8" />
+			<when-property-is name="user.agent" value="ie9" />
+			<when-property-is name="user.agent" value="ie10" />
+		</any>
+	</set-property>
+	
+	<!-- Setup replacement rules depending on the property -->
+	<replace-with class="org.gwtproject.gwt.worker.client.WorkerSupport.ServiceWorkerDetectedMaybe">
+		<when-type-is class="org.gwtproject.gwt.worker.client.WorkerSupport.ServiceWorkerDetector" />
+		<when-property-is name="serviceWorkerSupport" value="maybe" />
+	</replace-with>
+
+	<replace-with class="org.gwtproject.gwt.worker.client.WorkerSupport.ServiceWorkerDetectedNo">
+		<when-type-is class="org.gwtproject.gwt.worker.client.WorkerSupport.ServiceWorkerDetector" />
+		<when-property-is name="serviceWorkerSupport" value="no" />
+	</replace-with>
+	
+	<!-- _______________Source paths_______________ -->
+
 	<source path="shared" />
 	<source path="client" />
 </module>
