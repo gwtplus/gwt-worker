@@ -22,5 +22,5 @@ public interface MessagePortRef {
 	
 	//void postMessage(String message, CanvasProxy... proxies);
 	
-	HandlerRegistration addMessageHandler(MessageEvent.Handler handler);
+	HandlerRegistration addMessageHandler(MessageHandler handler);
 }

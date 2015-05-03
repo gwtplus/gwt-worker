@@ -1,10 +1,13 @@
 package org.gwtproject.gwt.worker.client;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.gwtproject.gwt.worker.shared.MessageEvent;
 import org.gwtproject.gwt.worker.shared.MessagePort;
 
+import com.google.gwt.core.client.JsArray;
 import com.google.gwt.user.client.Event;
 
 public class MessageEventJsoImpl extends Event implements MessageEvent {
@@ -35,7 +38,21 @@ public class MessageEventJsoImpl extends Event implements MessageEvent {
 
 	@Override
 	public final List<MessagePort> getPorts() {
-		throw new UnsupportedOperationException("Not implemented !");
+		JsArray<MessagePortJsoImpl> ports = getPorts0();
+		if(ports == null || ports.length() == 0) {
+			return Collections.emptyList();
+		}
+		
+		List<MessagePort> ps = new ArrayList<>();
+		for(int i = 0; i < ports.length(); i++) {
+			MessagePortJsoImpl p = ports.get(i);
+			ps.add(p);
+		}
+		
+		return ps;
 	}
-
+	
+	private final native JsArray<MessagePortJsoImpl> getPorts0()/*-{
+		return this.ports;
+	}-*/;
 }

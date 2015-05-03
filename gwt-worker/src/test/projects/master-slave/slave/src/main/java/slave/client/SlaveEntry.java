@@ -3,9 +3,13 @@ package slave.client;
 import java.util.logging.Logger;
 
 import org.gwtproject.gwt.worker.shared.AbstractWorkerScope;
+import org.gwtproject.gwt.worker.shared.ConnectHandler;
 import org.gwtproject.gwt.worker.shared.MessageEvent;
+import org.gwtproject.gwt.worker.shared.MessageHandler;
+import org.gwtproject.gwt.worker.shared.MessagePort;
 import org.gwtproject.gwt.worker.shared.WorkerScope;
 import org.gwtproject.gwt.worker.shared.Workers;
+import org.gwtproject.gwt.worker.shared.shared.SharedWorkerScope;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -25,7 +29,7 @@ public class SlaveEntry implements EntryPoint {
 		if(inWorker) {
 			AbstractWorkerScope scope = Workers.getScope();
 			
-			MessageEvent.Handler h = new MessageEvent.Handler() {
+			final MessageHandler h = new MessageHandler() {
 				
 				@Override
 				public void onMessage(MessageEvent event) {
@@ -37,8 +41,20 @@ public class SlaveEntry implements EntryPoint {
 				WorkerScope ws = scope.asDedicated();
 				ws.asPortRef().addMessageHandler(h);
 			} else if (scope.isShared()) {
-				//SharedWorkerScope sws = scope.asShared();
-				//TODO: implement on connect
+				SharedWorkerScope sws = scope.asShared();
+				sws.addConnectHandler(new ConnectHandler() {
+					
+					@Override
+					public void onConnect(MessageEvent event) {
+						sLogger.info("Master connected");
+						
+						MessagePort port = event.getPorts().get(0);
+						
+						port.addMessageHandler(h);
+						port.start();
+						//port.close();
+					}
+				});
 			}
 		}
 		

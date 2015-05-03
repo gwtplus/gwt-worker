@@ -4,10 +4,6 @@ import java.util.List;
 
 public interface MessageEvent {
 	
-	interface Handler {
-		void onMessage(MessageEvent event);
-	}
-	
 	String getData();
 
 	String getOrigin();

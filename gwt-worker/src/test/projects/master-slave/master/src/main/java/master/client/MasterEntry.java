@@ -54,14 +54,6 @@ public class MasterEntry implements EntryPoint {
 		}
 	}
 
-	private void startSharedWorker() {
-		// chrome://inspect/#workers
-		SharedWorker sw = Workers.newSharedWorker("./Slave/Slave.worker.js",
-				"looper");
-		MessagePort port = sw.getPort();
-		port.start();
-	}
-
 	private void startWorker() {
 		// web inspector threads
 		Worker w = Workers.newWorker("./Slave/Slave.worker.js");
@@ -74,5 +66,16 @@ public class MasterEntry implements EntryPoint {
 						+ ":" + error.getLineNumber() + ")");
 			}
 		});
+	}
+	
+	private void startSharedWorker() {
+		// chrome://inspect/#workers
+		SharedWorker sw = Workers.newSharedWorker("./Slave/Slave.worker.js",
+				"looper");
+		MessagePort port = sw.getPort();
+		port.start();
+		
+		port.postMessage("You are a shared slave");
+		port.close();
 	}
 }

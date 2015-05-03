@@ -1,6 +1,7 @@
 package org.gwtproject.gwt.worker.shared.shared;
 
 import org.gwtproject.gwt.worker.shared.AbstractWorkerScope;
+import org.gwtproject.gwt.worker.shared.ConnectHandler;
 
 import com.google.web.bindery.event.shared.HandlerRegistration;
 
@@ -14,5 +15,5 @@ public interface SharedWorkerScope extends AbstractWorkerScope {
 	
 	Object getApplicationCache();
 	
-	HandlerRegistration addConnectHandler(Object handler);
+	HandlerRegistration addConnectHandler(ConnectHandler handler);
 }

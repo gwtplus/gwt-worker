@@ -2,7 +2,7 @@ package org.gwtproject.gwt.worker.client;
 
 import static org.gwtproject.gwt.worker.client.EventListeners.register;
 
-import org.gwtproject.gwt.worker.shared.MessageEvent;
+import org.gwtproject.gwt.worker.shared.MessageHandler;
 import org.gwtproject.gwt.worker.shared.MessagePort;
 import org.gwtproject.gwt.worker.shared.MessagePortRef;
 
@@ -41,7 +41,7 @@ public class MessagePortRefJsoImpl extends JavaScriptObject implements MessagePo
 	}
 
 	@Override
-	public final HandlerRegistration addMessageHandler(final MessageEvent.Handler handler) {
+	public final HandlerRegistration addMessageHandler(final MessageHandler handler) {
 		return register(this, "message", new EventListener() {
 			@Override
 			public void onBrowserEvent(Event event) {
