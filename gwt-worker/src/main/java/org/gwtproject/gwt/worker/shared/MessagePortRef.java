@@ -2,8 +2,8 @@ package org.gwtproject.gwt.worker.shared;
 
 import org.gwtproject.gwt.worker.client.MessagePortRefJsoImpl;
 
+import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.SingleJsoImpl;
-import com.google.gwt.typedarrays.shared.ArrayBuffer;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 
 /**
@@ -12,15 +12,18 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
  */
 @SingleJsoImpl(MessagePortRefJsoImpl.class)
 public interface MessagePortRef {
-
-	//TODO: support different message types (structured clone algorithm is used for message)
+	
+	void postMessage(int message);
+	
 	void postMessage(String message);
 	
-	void postMessage(String message, ArrayBuffer... buffers);
+	void postMessage(JavaScriptObject message);
 	
-	void postMessage(String message, MessagePort... ports);
+	void postMessage(int message, Transferable... t);
 	
-	//void postMessage(String message, CanvasProxy... proxies);
+	void postMessage(String message, Transferable... t);
+	
+	void postMessage(JavaScriptObject message, Transferable... t);
 	
 	HandlerRegistration addMessageHandler(MessageHandler handler);
 }

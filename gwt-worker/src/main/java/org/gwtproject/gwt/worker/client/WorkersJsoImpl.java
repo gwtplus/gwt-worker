@@ -4,13 +4,16 @@ import org.gwtproject.gwt.worker.client.WorkerSupport.ServiceWorkerDetector;
 import org.gwtproject.gwt.worker.client.WorkerSupport.SharedWorkerDetector;
 import org.gwtproject.gwt.worker.client.WorkerSupport.WorkerDetector;
 import org.gwtproject.gwt.worker.shared.AbstractWorkerScope;
+import org.gwtproject.gwt.worker.shared.MessagePort;
 import org.gwtproject.gwt.worker.shared.Promise;
+import org.gwtproject.gwt.worker.shared.Transferable;
 import org.gwtproject.gwt.worker.shared.Worker;
 import org.gwtproject.gwt.worker.shared.WorkersBaseImpl;
 import org.gwtproject.gwt.worker.shared.service.ServiceWorker;
 import org.gwtproject.gwt.worker.shared.shared.SharedWorker;
 
 import com.google.gwt.core.shared.GWT;
+import com.google.gwt.typedarrays.shared.ArrayBuffer;
 
 public class WorkersJsoImpl extends WorkersBaseImpl {
 
@@ -79,6 +82,18 @@ public class WorkersJsoImpl extends WorkersBaseImpl {
 	
 	@Override
 	public Promise<ServiceWorker> registerServiceWorker(String url) {
+		//TODO: implement registering of service workers
 		return null;
 	}
+
+	@Override
+	public native Transferable asTransferable(ArrayBuffer buffer) /*-{
+		return buffer;
+	}-*/;
+
+	@Override
+	public native Transferable asTransferable(MessagePort port) /*-{
+		return port;
+	}-*/;
+
 }

@@ -62,7 +62,7 @@ public class MasterEntry implements EntryPoint {
 
 			@Override
 			public void onError(ErrorEvent error) {
-				sLogger.severe(error.getMessage() + "(" + error.getFileName()
+				sLogger.severe("Dedicated: " + error.getMessage() + "(" + error.getFileName()
 						+ ":" + error.getLineNumber() + ")");
 			}
 		});
@@ -72,6 +72,16 @@ public class MasterEntry implements EntryPoint {
 		// chrome://inspect/#workers
 		SharedWorker sw = Workers.newSharedWorker("./Slave/Slave.worker.js",
 				"looper");
+		
+		sw.addErrorHandler(new ErrorEvent.Handler() {
+
+			@Override
+			public void onError(ErrorEvent error) {
+				sLogger.severe("Shared: " + error.getMessage() + "(" + error.getFileName()
+						+ ":" + error.getLineNumber() + ")");
+			}
+		});
+		
 		MessagePort port = sw.getPort();
 		port.start();
 		

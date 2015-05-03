@@ -33,7 +33,7 @@ public class SlaveEntry implements EntryPoint {
 				
 				@Override
 				public void onMessage(MessageEvent event) {
-					sLogger.warning("Message from master: '" + event.getData() + "'");
+					sLogger.warning("Message from master: '" + event.asData().getAsString() + "'");
 				}
 			};
 			

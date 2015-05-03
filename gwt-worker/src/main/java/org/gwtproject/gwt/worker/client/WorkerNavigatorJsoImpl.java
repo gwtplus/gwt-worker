@@ -12,7 +12,7 @@ import com.google.gwt.core.client.JsArrayString;
 public class WorkerNavigatorJsoImpl extends JavaScriptObject implements
 		WorkerNavigator {
 
-	public WorkerNavigatorJsoImpl() {
+	protected WorkerNavigatorJsoImpl() {
 	}
 	
 	@Override

@@ -4,6 +4,9 @@ import org.gwtproject.gwt.worker.client.WorkersJsoImpl;
 import org.gwtproject.gwt.worker.shared.service.ServiceWorker;
 import org.gwtproject.gwt.worker.shared.shared.SharedWorker;
 
+import com.google.gwt.canvas.client.Canvas;
+import com.google.gwt.typedarrays.shared.ArrayBuffer;
+
 public class Workers {
 	
 	protected static WorkersBaseImpl sImpl = new WorkersJsoImpl();
@@ -79,5 +82,22 @@ public class Workers {
 		}
 		
 		return sImpl.getScope();
+	}
+	
+	public static Transferable asTransferable(ArrayBuffer buffer) {
+		return sImpl.asTransferable(buffer);
+	}
+	
+	public static Transferable asTransferable(MessagePort port) {
+		return sImpl.asTransferable(port);
+	}
+	
+	/**
+	 * Marker method to remind that it's possible to transfer canvas proxy
+	 * @param canvasProxy
+	 * @return
+	 */
+	public static Transferable asTransferable(Canvas canvasProxy) {
+		throw new UnsupportedOperationException();
 	}
 }

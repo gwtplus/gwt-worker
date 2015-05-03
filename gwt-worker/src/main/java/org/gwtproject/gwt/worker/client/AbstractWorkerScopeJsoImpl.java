@@ -100,7 +100,7 @@ public class AbstractWorkerScopeJsoImpl extends EventTarget implements
 	}
 
 	@Override
-	public HandlerRegistration addLanguageChangeHandler(final LanguageChangeEvent.Handler handler) {
+	public final HandlerRegistration addLanguageChangeHandler(final LanguageChangeEvent.Handler handler) {
 		return register(this, "languagechange", new EventListener() {
 			@Override
 			public void onBrowserEvent(Event event) {
@@ -110,7 +110,7 @@ public class AbstractWorkerScopeJsoImpl extends EventTarget implements
 	}
 
 	@Override
-	public HandlerRegistration addConnectivityHandler(final ConnectivityEvent.Handler handler) {
+	public final HandlerRegistration addConnectivityHandler(final ConnectivityEvent.Handler handler) {
 		EventListener el = new EventListener() {
 			@Override
 			public void onBrowserEvent(Event event) {
