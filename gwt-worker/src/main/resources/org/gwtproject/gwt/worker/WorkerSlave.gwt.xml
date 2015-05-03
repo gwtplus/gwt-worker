@@ -24,7 +24,7 @@
 	<set-property name="user.agent" value="safari" />
 	-->	
 	
-	<!-- not yet implemented -->
+	<!-- not yet fully working -->
 	<define-linker name="xsworker" class="org.gwtproject.gwt.worker.linker.CrossSiteWorkerLinker" />
 	
 	<define-linker name="ssworker" class="org.gwtproject.gwt.worker.linker.SingleScriptWorkerLinker" />

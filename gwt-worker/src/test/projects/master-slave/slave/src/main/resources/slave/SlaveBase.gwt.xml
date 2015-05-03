@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google, Inc.//DTD GWT Module Descriptor//EN" "https://github.com/gwtproject/gwt/raw/2.7.0/distro-source/core/src/gwt-module.dtd">
+<module rename-to="Slave">
+	<!-- some basic inherits -->
+	<inherits name="com.google.gwt.user.User" />
+
+	<!-- required in slave -->
+	<inherits name="org.gwtproject.gwt.worker.WorkerSlave" />
+	
+	<entry-point class="slave.client.SlaveEntry" />
+</module>

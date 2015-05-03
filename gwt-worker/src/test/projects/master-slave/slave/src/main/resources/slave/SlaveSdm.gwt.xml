@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE module PUBLIC "-//Google, Inc.//DTD GWT Module Descriptor//EN" "https://github.com/gwtproject/gwt/raw/2.7.0/distro-source/core/src/gwt-module.dtd">
-<module rename-to="Slave">
+<module rename-to="SlaveSdm">
+	<inherits name="slave.SlaveBase" />
 
-	<!-- optional, by default uses SEVERE, place where it is added matters! -->
-	<inherits name="org.gwtproject.gwt.worker.logging.WorkerLogging" />
+	<!-- optional, by default uses SEVERE -->
+	<inherits name="com.google.gwt.logging.Logging" />
 	<!-- optional, switch to INFO and lower -->
 	<set-property name="gwt.logging.enabled" value="TRUE"/>
 	
-	
-	<inherits name="slave.SlaveBase" />
+	<collapse-all-properties value="false" />
+	<add-linker name="xsworker"/>
 </module>

@@ -62,7 +62,7 @@ public class WorkersJsoImpl extends WorkersBaseImpl {
 	
 	@Override
 	public native boolean inWorker()/*-{
-		return typeof importScripts === 'function';
+		return typeof $wnd.importScripts === 'function';
 	}-*/;
 	
 	@Override

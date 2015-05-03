@@ -15,8 +15,20 @@
  */
 __BEGIN_TRY_BLOCK__
 function __MODULE_FUNC__() {
-  var $wnd = __WINDOW_DEF__;
-  var $doc = __DOCUMENT_DEF__;
+  //#worker
+  var isWorker = typeof importScripts === 'function';
+  var $self = isWorker ? self : window;
+  
+  if(isWorker) {
+    $self.document = { 
+      documentMode: 10, 
+      compatMode: 'CSS1Compat'
+    };
+  }
+
+  //#worker
+  var $wnd = $self;//__WINDOW_DEF__;
+  var $doc = $self.document//__DOCUMENT_DEF__;
 
   sendStats('bootstrap', 'begin');
 
