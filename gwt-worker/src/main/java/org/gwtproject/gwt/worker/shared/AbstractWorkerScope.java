@@ -3,7 +3,6 @@ package org.gwtproject.gwt.worker.shared;
 import org.gwtproject.gwt.worker.shared.service.ServiceWorkerScope;
 import org.gwtproject.gwt.worker.shared.shared.SharedWorkerScope;
 
-import com.google.gwt.event.dom.client.ErrorHandler;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 
 /**
@@ -34,11 +33,9 @@ public interface AbstractWorkerScope {
 	
 	void close();
 	
-	HandlerRegistration addErrorHandler(ErrorHandler handler);
+	HandlerRegistration addErrorHandler(ErrorEvent.Handler handler);
 	
-	HandlerRegistration addLanguageChangeHandler(Object handler);
+	HandlerRegistration addLanguageChangeHandler(LanguageChangeEvent.Handler handler);
 	
-	HandlerRegistration addOnlineHandler(Object handler);
-	
-	HandlerRegistration addOfflineHandler(Object handler);
+	HandlerRegistration addConnectivityHandler(ConnectivityEvent.Handler handler);
 }
