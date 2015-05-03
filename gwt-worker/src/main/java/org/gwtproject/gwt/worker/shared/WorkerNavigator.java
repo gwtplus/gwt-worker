@@ -21,7 +21,8 @@ public interface WorkerNavigator {
 
 	String getProduct(); // Gecko
 
-	boolean isTaintEnabled(); // false
+	//@Depracated
+	//boolean isTaintEnabled(); // false
 
 	String getUserAgent();
 

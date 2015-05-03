@@ -41,11 +41,6 @@ public class WorkerNavigatorJsoImpl extends JavaScriptObject implements
 	}-*/;
 
 	@Override
-	public final native boolean isTaintEnabled() /*-{
-		return this.taintEnabled;
-	}-*/;
-
-	@Override
 	public final native String getUserAgent() /*-{
 		return this.userAgent;
 	}-*/;

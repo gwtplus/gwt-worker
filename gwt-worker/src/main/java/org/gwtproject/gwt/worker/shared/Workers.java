@@ -7,6 +7,16 @@ import org.gwtproject.gwt.worker.shared.shared.SharedWorker;
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.typedarrays.shared.ArrayBuffer;
 
+/**
+ * APIs available to Workers (in addition to those in scopes):
+ * <li>XMLHttpRequest
+ * <li>WebSocket
+ * <li>URL
+ * <li>Promise
+ * <li>IndexedDB
+ * <li>Timer (setTimeout, setInterval)
+ * <li>File, FileSystem, FileWriter on Chrome (probably)
+ */
 public class Workers {
 	
 	protected static WorkersBaseImpl sImpl = new WorkersJsoImpl();
