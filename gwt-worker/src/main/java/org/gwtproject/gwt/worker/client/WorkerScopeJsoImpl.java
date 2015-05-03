@@ -1,6 +1,6 @@
 package org.gwtproject.gwt.worker.client;
 
-import org.gwtproject.gwt.worker.shared.MessagePort;
+import org.gwtproject.gwt.worker.shared.MessagePortRef;
 import org.gwtproject.gwt.worker.shared.WorkerScope;
 
 public class WorkerScopeJsoImpl extends AbstractWorkerScopeJsoImpl implements
@@ -11,8 +11,8 @@ public class WorkerScopeJsoImpl extends AbstractWorkerScopeJsoImpl implements
 	}
 	
 	@Override
-	public final MessagePort asPort() {
-		return (MessagePortJsoImpl) this.cast();
+	public final MessagePortRef asPortRef() {
+		return (MessagePortRefJsoImpl) this.cast();
 	}
 
 }

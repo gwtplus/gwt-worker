@@ -10,9 +10,9 @@ public interface Worker extends AbstractWorker {
 	void terminate();
 	
 	/**
-	 * Returns this worker as MessagePort
-	 * which doesn't require starting or closing
+	 * Returns this worker as MessagePortRef
+	 * which doesn't support starting or closing
 	 * @return
 	 */
-	MessagePort asPort();
+	MessagePortRef asPortRef();
 }

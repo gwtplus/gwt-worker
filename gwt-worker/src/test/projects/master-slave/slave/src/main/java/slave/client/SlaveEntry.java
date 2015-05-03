@@ -35,7 +35,7 @@ public class SlaveEntry implements EntryPoint {
 			
 			if(scope.isDedicated()) {
 				WorkerScope ws = scope.asDedicated();
-				ws.asPort().addMessageHandler(h);
+				ws.asPortRef().addMessageHandler(h);
 			} else if (scope.isShared()) {
 				//SharedWorkerScope sws = scope.asShared();
 				//TODO: implement on connect

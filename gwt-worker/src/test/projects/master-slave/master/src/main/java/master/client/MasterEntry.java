@@ -65,7 +65,7 @@ public class MasterEntry implements EntryPoint {
 	private void startWorker() {
 		// web inspector threads
 		Worker w = Workers.newWorker("./Slave/Slave.worker.js");
-		w.asPort().postMessage("You are a slave :)");
+		w.asPortRef().postMessage("You are a slave :)");
 		w.addErrorHandler(new WorkerError.Handler() {
 
 			@Override

@@ -7,5 +7,10 @@ package org.gwtproject.gwt.worker.shared;
  */
 public interface WorkerScope extends AbstractWorkerScope {
 	
-	MessagePort asPort(); 
+	/**
+	 * Returns this worker as MessagePortRef
+	 * which doesn't support starting or closing
+	 * @return
+	 */
+	MessagePortRef asPortRef(); 
 }
