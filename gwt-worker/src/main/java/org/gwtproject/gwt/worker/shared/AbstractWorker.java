@@ -4,5 +4,5 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
 
 public interface AbstractWorker {
 
-	HandlerRegistration addErrorHandler(WorkerError.Handler handler);
+	HandlerRegistration addErrorHandler(ErrorEvent.Handler handler);
 }

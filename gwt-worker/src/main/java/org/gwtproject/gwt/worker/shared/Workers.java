@@ -34,6 +34,7 @@ public class Workers {
 	 */
 	public static Worker newWorker(String scriptUrl) {
 		if(!sImpl.isDedicatedSupported()) {
+			//TODO maybe support emulation by injecting worker script into the page?
 			throw new UnsupportedOperationException("Worker not supported");
 		}
 		

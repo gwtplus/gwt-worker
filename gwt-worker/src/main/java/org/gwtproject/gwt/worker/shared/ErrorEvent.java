@@ -1,14 +1,14 @@
 package org.gwtproject.gwt.worker.shared;
 
-public interface WorkerError {
+public interface ErrorEvent {
 	
 	interface Handler {
-		void onWorkerError(WorkerError error);
+		void onError(ErrorEvent error);
 	}
 
 	String getMessage();
 
 	String getFileName();
 
-	String getLineNumber();
+	int getLineNumber();
 }

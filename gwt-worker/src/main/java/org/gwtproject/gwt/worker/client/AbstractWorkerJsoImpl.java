@@ -3,7 +3,7 @@ package org.gwtproject.gwt.worker.client;
 import static org.gwtproject.gwt.worker.client.EventListeners.register;
 
 import org.gwtproject.gwt.worker.shared.AbstractWorker;
-import org.gwtproject.gwt.worker.shared.WorkerError;
+import org.gwtproject.gwt.worker.shared.ErrorEvent;
 
 import com.google.gwt.dom.client.EventTarget;
 import com.google.gwt.user.client.Event;
@@ -17,11 +17,11 @@ public class AbstractWorkerJsoImpl extends EventTarget implements AbstractWorker
 	}
 
 	@Override
-	public final HandlerRegistration addErrorHandler(final WorkerError.Handler handler) {
+	public final HandlerRegistration addErrorHandler(final ErrorEvent.Handler handler) {
 		return register(this, "error", new EventListener() {
 			@Override
 			public void onBrowserEvent(Event event) {
-				handler.onWorkerError((WorkerErrorJsoImpl) event.cast());
+				handler.onError((ErrorEventJsoImpl) event.cast());
 			}
 		});
 	}

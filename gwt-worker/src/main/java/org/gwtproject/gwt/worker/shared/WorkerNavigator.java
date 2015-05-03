@@ -2,10 +2,15 @@ package org.gwtproject.gwt.worker.shared;
 
 import java.util.List;
 
+import org.gwtproject.gwt.worker.client.WorkerNavigatorJsoImpl;
+
+import com.google.gwt.core.client.SingleJsoImpl;
+
+@SingleJsoImpl(WorkerNavigatorJsoImpl.class)
 public interface WorkerNavigator {
-	
-	//NavigatorID
-	
+
+	// NavigatorID
+
 	String getAppCodeName(); // Mozilla
 
 	String getAppName();
@@ -16,19 +21,19 @@ public interface WorkerNavigator {
 
 	String getProduct(); // Gecko
 
-	String isTaintEnabled(); // false
+	boolean isTaintEnabled(); // false
 
 	String getUserAgent();
 
 	String getVendorSub();
-	
-	//NavigatorLanguage
-	
+
+	// NavigatorLanguage
+
 	String getLanguage();
-	
+
 	List<String> getLanguages();
-	
-	//NavigatorOnLine
-	
+
+	// NavigatorOnLine
+
 	boolean isOnline();
 }

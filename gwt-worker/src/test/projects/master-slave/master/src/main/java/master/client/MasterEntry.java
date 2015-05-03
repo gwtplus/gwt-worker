@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 import org.gwtproject.gwt.worker.shared.AbstractWorkerScope;
 import org.gwtproject.gwt.worker.shared.MessagePort;
 import org.gwtproject.gwt.worker.shared.Worker;
-import org.gwtproject.gwt.worker.shared.WorkerError;
+import org.gwtproject.gwt.worker.shared.ErrorEvent;
 import org.gwtproject.gwt.worker.shared.Workers;
 import org.gwtproject.gwt.worker.shared.shared.SharedWorker;
 
@@ -58,10 +58,10 @@ public class MasterEntry implements EntryPoint {
 		// web inspector threads
 		Worker w = Workers.newWorker("./Slave/Slave.worker.js");
 		w.asPortRef().postMessage("You are a slave :)");
-		w.addErrorHandler(new WorkerError.Handler() {
+		w.addErrorHandler(new ErrorEvent.Handler() {
 
 			@Override
-			public void onWorkerError(WorkerError error) {
+			public void onError(ErrorEvent error) {
 				sLogger.severe(error.getMessage() + "(" + error.getFileName()
 						+ ":" + error.getLineNumber() + ")");
 			}

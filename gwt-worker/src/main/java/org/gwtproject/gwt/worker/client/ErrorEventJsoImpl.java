@@ -1,12 +1,12 @@
 package org.gwtproject.gwt.worker.client;
 
-import org.gwtproject.gwt.worker.shared.WorkerError;
+import org.gwtproject.gwt.worker.shared.ErrorEvent;
 
 import com.google.gwt.user.client.Event;
 
-public class WorkerErrorJsoImpl extends Event implements WorkerError {
+public class ErrorEventJsoImpl extends Event implements ErrorEvent {
 	
-	protected WorkerErrorJsoImpl() {
+	protected ErrorEventJsoImpl() {
 
 	}
 	
@@ -21,7 +21,7 @@ public class WorkerErrorJsoImpl extends Event implements WorkerError {
 	}-*/;
 
 	@Override
-	public final native String getLineNumber() /*-{
-		return this.lineno;
+	public final native int getLineNumber() /*-{
+		return this.lineno ? this.lineno : -1;
 	}-*/;
 }
