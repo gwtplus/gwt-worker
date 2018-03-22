@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google, Inc.//DTD GWT Module Descriptor//EN" "https://github.com/gwtproject/gwt/raw/2.7.0/distro-source/core/src/gwt-module.dtd">
+<module rename-to="Worker">
+	<inherits name="io.github.gwtplus.worker.WorkerMaster" />
+  	
+  	<!-- Required by ssworker linker -->
+	<collapse-all-properties/>
+	
+	<!-- 
+	Alternatives: (also derived properties have to be collapsed)
+	https://code.google.com/p/google-web-toolkit/issues/detail?id=6258#c4
+	
+	<collapse-property name="user.agent" values="*" />
+	<collapse-property name="user.agent" values="safari,gecko1_8,ie8,ie9,ie10" />
+	
+	<collapse-property name="canvasElementSupport" values="maybe,no" />
+	<collapse-property name="touchEventSupport" values="maybe,no" />
+	<collapse-property name="dragEventSupport" values="maybe,no" />
+	<collapse-property name="audioElementSupport" values="maybe,no" />
+	<collapse-property name="videoElementSupport" values="maybe,no" />
+	
+	or
+	
+	<set-property name="user.agent" value="safari" />
+	-->	
+  
+    <!--
+      Configures if the UncaughtExceptionHandler will trap errors coming from listening on self.error.
+      Three different flags are:
+       - Trap self on error at all times and forward (REPORT)
+       - Only trap self.onerror if there is no current self.onerror handler (REPORT_IF_NO_HANDLER)
+       - Do not trap anything (legacy behavior) (IGNORE)
+    -->
+    <define-property name="gwt.uncaughtexceptionhandler.selfonerror" values="IGNORE, REPORT, REPORT_IF_NO_HANDLER" />
+    <set-property name="gwt.uncaughtexceptionhandler.selfonerror" value="REPORT_IF_NO_HANDLER"/>
+    
+    <!-- Do not use window in web worker code -->
+    <set-property name="gwt.uncaughtexceptionhandler.windowonerror" value="IGNORE"/>
+	
+	<!-- not yet fully working -->
+	<!-- <define-linker name="xsworker" class="org.gwtproject.gwt.worker.linker.CrossSiteWorkerLinker" /> -->
+	
+	<define-linker name="ssworker" class="io.github.gwtplus.worker.linker.SingleScriptWorkerLinker" />
+  	<add-linker name="ssworker"/>
+
+	<source path="client" />
+</module>

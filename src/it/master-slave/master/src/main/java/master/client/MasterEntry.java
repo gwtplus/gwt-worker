@@ -1,15 +1,13 @@
 package master.client;
 
+import static io.github.gwtplus.worker.client.Workers.*;
+
 import java.util.logging.Logger;
 
-import org.gwtproject.gwt.worker.shared.AbstractWorkerScope;
-import org.gwtproject.gwt.worker.shared.MessagePort;
-import org.gwtproject.gwt.worker.shared.Worker;
-import org.gwtproject.gwt.worker.shared.ErrorEvent;
-import org.gwtproject.gwt.worker.shared.Workers;
-import org.gwtproject.gwt.worker.shared.shared.SharedWorker;
-
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.Timer;
+
+import io.github.gwtplus.worker.client.Worker;
 
 public class MasterEntry implements EntryPoint {
 
@@ -19,45 +17,36 @@ public class MasterEntry implements EntryPoint {
 	public void onModuleLoad() {
 		logWorkerInfo();
 
-		if (Workers.isDedicatedSupported()) {
+		if (isWorkerSupported()) {
 			startWorker();
 		}
 
-		if(Workers.isSharedSupported()) {
+		/*if(Workers.isSharedSupported()) {
 			startSharedWorker();
-		}
+		}*/
 	}
 	
 	private void logWorkerInfo() {
-		boolean dedicatedSupport = Workers.isDedicatedSupported();
-		sLogger.info("dedicatedSupport=" + dedicatedSupport);
+		boolean dedicatedSupport = isWorkerSupported();
+		sLogger.info("workerSupport=" + dedicatedSupport);
 		
-		boolean sharedSupport = Workers.isSharedSupported();
+		boolean sharedSupport = isSharedWorkerSupported();
 		sLogger.info("sharedSupport=" + sharedSupport);
 		
-		boolean serviceSupport = Workers.isServiceSupported();
+		boolean serviceSupport = isServiceWorkerSupported();
 		sLogger.info("serviceSupport=" + serviceSupport);
 		
-		boolean inWorker = Workers.inWorker();
+		boolean inWorker = inWorkerScope();
 		sLogger.info("inWorker=" + inWorker);
-
-		if (inWorker) {
-			AbstractWorkerScope scope = Workers.getScope();
-
-			boolean dedicated = scope.isDedicated();
-			boolean shared = scope.isShared();
-			boolean service = scope.isService();
-
-			sLogger.info("dedicated=" + dedicated);
-			sLogger.info("shared=" + shared);
-			sLogger.info("service=" + service);
-		}
 	}
 
 	private void startWorker() {
-		// web inspector threads
-		Worker w = Workers.newWorker("./Slave/Slave.worker.js");
-		w.asPortRef().postMessage("You are a slave :)");
+		
+	  sLogger.info("Starting Slave...");
+	  
+	// web inspector threads
+		Worker w = new Worker("./Slave/Slave.worker.js");
+		/*w.postMessage("You are a slave :)");
 		w.addErrorHandler(new ErrorEvent.Handler() {
 
 			@Override
@@ -66,9 +55,18 @@ public class MasterEntry implements EntryPoint {
 						+ ":" + error.getLineNumber() + ")");
 			}
 		});
+		*/
+		new Timer() {
+      
+      @Override
+      public void run() {
+        sLogger.info("Stopping Slave...");
+        w.terminate();
+      }
+    }.schedule(60000);
 	}
 	
-	private void startSharedWorker() {
+	/*private void startSharedWorker() {
 		// chrome://inspect/#workers
 		SharedWorker sw = Workers.newSharedWorker("./Slave/Slave.worker.js",
 				"looper");
@@ -88,4 +86,5 @@ public class MasterEntry implements EntryPoint {
 		port.postMessage("You are a shared slave");
 		port.close();
 	}
+	*/
 }

@@ -2,18 +2,13 @@ package slave.client;
 
 import java.util.logging.Logger;
 
-import org.gwtproject.gwt.worker.shared.AbstractWorkerScope;
-import org.gwtproject.gwt.worker.shared.ConnectHandler;
-import org.gwtproject.gwt.worker.shared.MessageEvent;
-import org.gwtproject.gwt.worker.shared.MessageHandler;
-import org.gwtproject.gwt.worker.shared.MessagePort;
-import org.gwtproject.gwt.worker.shared.WorkerScope;
-import org.gwtproject.gwt.worker.shared.Workers;
-import org.gwtproject.gwt.worker.shared.shared.SharedWorkerScope;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Timer;
+
+import io.github.gwtplus.worker.client.WorkerScope;
+
+import static io.github.gwtplus.worker.client.Workers.*;
 
 public class SlaveEntry implements EntryPoint {
 
@@ -23,10 +18,10 @@ public class SlaveEntry implements EntryPoint {
 	public void onModuleLoad() {
 		logWorkerInfo();
 		
-		final boolean inWorker = Workers.inWorker();
+		final boolean inWorker = inWorkerScope();
 		final String name = inWorker ? "Worker:  " : "Renderer:";
 		
-		if(inWorker) {
+		/*if(inWorker) {
 			AbstractWorkerScope scope = Workers.getScope();
 			
 			final MessageHandler h = new MessageHandler() {
@@ -57,7 +52,7 @@ public class SlaveEntry implements EntryPoint {
 				});
 			}
 		}
-		
+		*/
 		//check worker locations:
 		sLogger.info(name + "host page: " + GWT.getHostPageBaseURL());
 		sLogger.info(name + "module: " + GWT.getModuleBaseURL());
@@ -82,28 +77,22 @@ public class SlaveEntry implements EntryPoint {
 	}
 	
 	private void logWorkerInfo() {
-		boolean dedicatedSupport = Workers.isDedicatedSupported();
-		sLogger.info("dedicatedSupport=" + dedicatedSupport);
+		boolean dedicatedSupport = isWorkerSupported();
+		sLogger.info("workerSupport=" + dedicatedSupport);
 		
-		boolean sharedSupport = Workers.isSharedSupported();
+		boolean sharedSupport = isSharedWorkerSupported();
 		sLogger.info("sharedSupport=" + sharedSupport);
 		
-		boolean serviceSupport = Workers.isServiceSupported();
+		boolean serviceSupport = isServiceWorkerSupported();
 		sLogger.info("serviceSupport=" + serviceSupport);
 		
-		boolean inWorker = Workers.inWorker();
+		boolean inWorker = inWorkerScope();
 		sLogger.info("inWorker=" + inWorker);
 
 		if (inWorker) {
-			AbstractWorkerScope scope = Workers.getScope();
+			WorkerScope scope = getScope();
 
-			boolean dedicated = scope.isDedicated();
-			boolean shared = scope.isShared();
-			boolean service = scope.isService();
-
-			sLogger.info("dedicated=" + dedicated);
-			sLogger.info("shared=" + shared);
-			sLogger.info("service=" + service);
+			sLogger.info("WorkerScope=" + scope);
 		}
 	}
 	

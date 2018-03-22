@@ -2,7 +2,7 @@
 <!DOCTYPE module PUBLIC "-//Google, Inc.//DTD GWT Module Descriptor//EN" "https://github.com/gwtproject/gwt/raw/2.7.0/distro-source/core/src/gwt-module.dtd">
 <module rename-to="Master">
 	<inherits name="com.google.gwt.user.User" />
-	<inherits name="org.gwtproject.gwt.worker.WorkerMaster" />
+	<inherits name="io.github.gwtplus.worker.WorkerMaster" />
 	
 	<!-- optional -->
 	<inherits name="com.google.gwt.logging.Logging" />

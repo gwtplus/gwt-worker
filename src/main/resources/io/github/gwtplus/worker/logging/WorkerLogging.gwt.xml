@@ -5,7 +5,7 @@
 
 	<define-property name="gwt.logging.workerConsoleHandler" values="ENABLED, DISABLED" />
 	<replace-with class="com.google.gwt.logging.client.NullLogHandler">
-		<when-type-is class="org.gwtproject.gwt.worker.logging.client.WorkerConsoleLogHandler" />
+		<when-type-is class="io.github.gwtplus.worker.logging.client.WorkerConsoleLogHandler" />
 		<any>
 			<when-property-is name="gwt.logging.enabled" value="FALSE" />
 			<when-property-is name="gwt.logging.workerConsoleHandler" value="DISABLED" />
@@ -16,5 +16,7 @@
 	<set-property name="gwt.logging.consoleHandler" value="DISABLED" />
 	<set-property name="gwt.logging.workerConsoleHandler" value="ENABLED" />
 
-	<entry-point class="org.gwtproject.gwt.worker.logging.client.WorkerLoggingEntry"/>
+	<entry-point class="io.github.gwtplus.worker.logging.client.WorkerLoggingEntry"/>
+  
+  <source path="client"/>
 </module>

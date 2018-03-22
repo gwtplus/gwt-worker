@@ -3,10 +3,9 @@
 <module rename-to="Slave">
 
 	<!-- optional, by default uses SEVERE, place where it is added matters! -->
-	<inherits name="org.gwtproject.gwt.worker.logging.WorkerLogging" />
+	<inherits name="io.github.gwtplus.worker.logging.WorkerLogging" />
 	<!-- optional, switch to INFO and lower -->
 	<set-property name="gwt.logging.enabled" value="TRUE"/>
-	
 	
 	<inherits name="slave.SlaveBase" />
 </module>

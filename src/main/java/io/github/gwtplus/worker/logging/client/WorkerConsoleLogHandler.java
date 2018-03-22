@@ -14,7 +14,9 @@
  * the License.
  */
 
-package org.gwtproject.gwt.worker.logging.client;
+package io.github.gwtplus.worker.logging.client;
+
+import static io.github.gwtplus.worker.client.WorkerGlobal.console;
 
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -47,39 +49,19 @@ public class WorkerConsoleLogHandler extends Handler {
 
   @Override
   public void publish(LogRecord record) {
-    if (!isSupported() || !isLoggable(record)) {
+    if (console == null || !isLoggable(record)) {
       return;
     }
     String msg = getFormatter().format(record);
     int val = record.getLevel().intValue();
     if (val >= Level.SEVERE.intValue()) {
-      error(msg);
+      console.error(msg);
     } else if (val >= Level.WARNING.intValue()) {
-      warn(msg);
+      console.warn(msg);
     } else if (val >= Level.INFO.intValue()) {
-      info(msg);
+      console.info(msg);
     } else {
-      log(msg);
+      console.log(msg);
     }
   }
-
-  private native boolean isSupported() /*-{
-    return !!$self.console;
-  }-*/;
-
-  private native void error(String message) /*-{
-    $self.console.error(message);
-  }-*/;
-
-  private native void warn(String message) /*-{
-    $self.console.warn(message);
-  }-*/;
-
-  private native void info(String message) /*-{
-    $self.console.info(message);
-  }-*/;
-
-  private native void log(String message) /*-{
-    $self.console.log(message);
-  }-*/;
 }

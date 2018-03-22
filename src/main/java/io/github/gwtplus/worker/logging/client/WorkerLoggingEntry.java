@@ -1,4 +1,4 @@
-package org.gwtproject.gwt.worker.logging.client;
+package io.github.gwtplus.worker.logging.client;
 
 import java.util.logging.Handler;
 import java.util.logging.Logger;
